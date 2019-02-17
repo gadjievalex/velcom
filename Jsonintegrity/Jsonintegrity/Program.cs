@@ -1,4 +1,5 @@
-﻿using Jsonintegrity.ServiceBlock.JsonComponent;
+﻿using Jsonintegrity.DebugUtilities;
+using Jsonintegrity.ServiceBlock.JsonComponent;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,12 +33,13 @@ namespace Jsonintegrity
 
         public static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
+            Logger.LogMessage(ConsoleColor.Green, " Попытка получить список файлов в обрабатываемой директории ");
             string[] files = Directory.GetFiles(dirName);
 
+            
             foreach (string s in files)
             {
+                Logger.LogMessage(ConsoleColor.Green, string.Format(" Обрабатывается файл {0} ",s));
                 JsonRawDataTile jsonRaw = new JsonRawDataTile(s);
                 if (jsonRaw.MessageTileNumber != 0)
                 {
@@ -45,10 +47,9 @@ namespace Jsonintegrity
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Метаданные файла {0} не валидны Код:0002.", s);
+                    Logger.LogMessage(ConsoleColor.Red, string.Format("Метаданные файла {0} не валидны Код:0002.", s));
                 }
-
+                Logger.LogMessage(ConsoleColor.Blue, string.Format(" файл {0} успешно", s));
             }
 
             using (StreamWriter outputFile = new StreamWriter(outputFileName))
@@ -57,6 +58,7 @@ namespace Jsonintegrity
                 {
                     outputFile.WriteLine(entry.Value.Trim());
                 }
+                Logger.LogMessage(ConsoleColor.Cyan, string.Format(" Результирующий файл {0} создан", outputFileName));
             }
 
             //string[] all = Directory.GetFiles(dirName, "*.txt")

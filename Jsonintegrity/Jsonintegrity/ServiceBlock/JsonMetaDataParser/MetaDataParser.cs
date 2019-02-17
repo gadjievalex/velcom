@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jsonintegrity.DebugUtilities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -31,8 +32,7 @@ namespace Jsonintegrity.ServiceBlock.JsonMetaDataParser
             }
             catch (FormatException e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Для строки {0} не удалось высчитать порядковый номер Код:0001.", rawMetaData);
+                Logger.LogMessage(ConsoleColor.Red, string.Format("Для строки {0} не удалось высчитать порядковый номер Код:0001.", rawMetaData));
             }
             return value;
         }
