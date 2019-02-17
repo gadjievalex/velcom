@@ -19,7 +19,8 @@ using System.Threading.Tasks;
  *      -- не учитывается блокировка, переход например на Threading 
  *      --SortedDictionary довольно медленный подход - можно написать что то вроде - class ComparableRawJson<K, V> : IDictionary<K, V> where K: IComparable<K>
  *      --отсутствует отвязка от конкретных реализация - как вариант интерфейсы и контенер(например ninject https://github.com/ninject/ninject)
- *      --для файла конфигурации создать свой класс 
+ *      --для файла конфигурации создать свой класс
+ *      --не устранено отображение переноса и перехода каретки
  */
 
 namespace Jsonintegrity
