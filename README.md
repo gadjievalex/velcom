@@ -1,4 +1,2 @@
 # velcom
-velcom
-
-#Обязательно заглянуть в App.config!
+Обязательно заглянуть в App.config!
